@@ -333,14 +333,9 @@ public virtual with sharing class Interpreter implements Visitor {
 
         if (env.contains(variable.name.lexeme)) {
             return env.get(variable.name.lexeme);
+        } else {
+            return '';
         }
-
-        String errorMessage = 'Error executing variable expression: the variable ' +
-            variable.name.lexeme + ' is not defined in the current context.';
-        throw new Exceptions.RuntimeException(
-            variable.name,
-            errorMessage
-        );
     }
 
     public virtual Object visit(Expr.MergeFieldOrScopeVariable mergeFieldOrScopeVariable) {
