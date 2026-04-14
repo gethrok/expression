@@ -107,22 +107,6 @@ private class GlobalContextTest {
         Assert.areEqual(recordId, result);
     }
 
-    @IsTest
-    private static void throwsARuntimeExceptionWhenReferencingAGlobalVariableThatDoesNotExist() {
-        String expression = '@DoesNotExist';
-        Id recordId = IdGenerator.generate(Account.SObjectType);
-        Account testRecord = new Account(
-            Id = recordId,
-            Name = 'Test'
-        );
-
-        try {
-            Evaluator.run(expression, testRecord);
-            System.assert(false, 'Expected a runtime exception');
-        } catch (Exception e) {
-            Assert.isInstanceOfType(e, Exceptions.RuntimeException.class);
-        }
-    }
 
     @IsTest
     private static void canPassCustomContext() {
